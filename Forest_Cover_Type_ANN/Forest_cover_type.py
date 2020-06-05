@@ -8,7 +8,6 @@ Created on Fri Jun  5 14:57:35 2020
 #importing required libraries
 import numpy as np
 import pandas as pd
-from   sklearn.model_selection import train_test_split
 from   keras.models import Sequential
 from   keras.layers import Dense
 from   notification_sound import sound
@@ -29,29 +28,23 @@ dataset_train_X=dataset_train.iloc[:,1:-1]
 dataset_train_Y=dataset_train.iloc[:, -1:]
 dataset_train_Y = np_utils.to_categorical(dataset_train_Y)
 
-
-
 #for testing data
 dataset_test=dataset_test.iloc[:,1:]
 
-
 #initilizing ANN
 classifier=Sequential()
-#adding the first hidden layer
 classifier.add(Dense(units=30, kernel_initializer= 'uniform', activation ='selu', input_dim=54))
-
-#adding the third hidden layer
 classifier.add(Dense(units=20, kernel_initializer= 'uniform', activation = 'elu'))
-
 classifier.add(Dense(units=10, kernel_initializer= 'uniform', activation = 'softplus'))
-
-#adding the final layer
 classifier.add(Dense(units=8, kernel_initializer= 'uniform', activation='softmax'))
+
 #compiling the ANN
 classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
 #fitting the ANN
 classifier.fit(dataset_train_X, dataset_train_Y, batch_size=32, epochs=100)
 
+#predicting the value for the test data
 Y_pred=classifier.predict(dataset_test)
 Y_pred=np.argmax(Y_pred,axis=1)
 
@@ -59,6 +52,6 @@ Y_pred=np.argmax(Y_pred,axis=1)
 final_output['Cover_Type']=pd.DataFrame(Y_pred, columns=['Cover_Type'])
 final_output.to_csv('submission.csv', index= False)
 
-
+#printing after completion
 print('Completed')
 sound(5)
