@@ -46,7 +46,7 @@ classifier.add(Dense(units=8, kernel_initializer= 'uniform', activation='softmax
 classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 #fitting the ANN
-classifier.fit(dataset_train_X, dataset_train_Y, batch_size=32, epochs=100)
+classifier.fit(dataset_train_X, dataset_train_Y, batch_size=32, epochs=500)
 
 #predicting the value for the test data
 Y_pred=classifier.predict(dataset_test)
