@@ -31,11 +31,15 @@ dataset_train_Y = np_utils.to_categorical(dataset_train_Y)
 #for testing data
 dataset_test=dataset_test.iloc[:,1:]
 
+#normalization
+from sklearn.preprocessing import StandardScaler
+sc=StandardScaler()
+dataset_train_X=sc.fit_transform(dataset_train_X)
+
 #initilizing ANN
 classifier=Sequential()
-classifier.add(Dense(units=30, kernel_initializer= 'uniform', activation ='selu', input_dim=54))
-classifier.add(Dense(units=20, kernel_initializer= 'uniform', activation = 'elu'))
-classifier.add(Dense(units=10, kernel_initializer= 'uniform', activation = 'softplus'))
+classifier.add(Dense(units=28, kernel_initializer= 'uniform', activation ='selu', input_dim=54))
+classifier.add(Dense(units=14, kernel_initializer= 'uniform', activation = 'softplus'))
 classifier.add(Dense(units=8, kernel_initializer= 'uniform', activation='softmax'))
 
 #compiling the ANN
