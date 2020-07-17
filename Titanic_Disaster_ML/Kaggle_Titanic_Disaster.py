@@ -9,12 +9,8 @@ Created on Sat May  2 17:24:12 2020
 
 '''Since its labeled data and needs only requires classification,
  we will be using Supervised Clasification Models
- So, we will apply the below models and sort with highest accuracy
- 
-1.Random Forests
-2. Support Vector Machines(SVM)
-3.Decision Trees
-4.KNN '''
+ So, we will apply Random Forests models 
+'''
 
 # Importing required libraries
 
